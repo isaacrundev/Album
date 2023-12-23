@@ -1,0 +1,25 @@
+{
+  "data": {
+    "user": [{ "username": "johndoe", "email": "johndoe@gmail.com" }],
+    "albums": [
+      {
+        "title": "quidem molestiae enim",
+        "images": [
+          "../assets/album-img/album-img-1.png",
+          "../assets/album-img/album-img-2.png",
+          "../assets/album-img/album-img-3.png",
+          "../assets/album-img/album-img-4.png"
+        ]
+      },
+      {
+        "title": "sunt qui excepturi placeat culpa",
+        "images": [
+          "../assets/album-img/album-img-4.png",
+          "../assets/album-img/album-img-3.png",
+          "../assets/album-img/album-img-2.png",
+          "../assets/album-img/album-img-1.png"
+        ]
+      }
+    ]
+  }
+}
