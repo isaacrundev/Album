@@ -12,6 +12,10 @@ import albumImg3 from "../assets/album-img/album-img-3.png";
 import albumImg4 from "../assets/album-img/album-img-4.png";
 import Popup from "../components/Popup";
 
+// const getData = async () => {
+//   const res = await fetch();
+// };
+
 const Albums = () => {
   return (
     <main className="relative">
