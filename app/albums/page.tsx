@@ -80,11 +80,13 @@ const Albums = () => {
               </button>
             </div>
             <div className="flex gap-[20px]">
-              {i.images.map((img) => (
-                <button key={v4()} className="basis-1/4" onClick={() => {}}>
-                  <Image src={img} alt="" width={455} height={293} />
-                </button>
-              ))}
+              {i.images.slice(0, 3).map(
+                (img) => console.log(img)
+
+                // <button key={v4()} className="basis-1/4" onClick={() => {}}>
+                //   <Image src={img} alt="" width={455} height={293} />
+                // </button>
+              )}
             </div>
           </div>
         ))}
