@@ -6,10 +6,7 @@ import addNewIcon from "@/app/assets/add-new-icon.png";
 import notifications from "@/app/assets/notifications.png";
 import vector from "@/app/assets/Vector.png";
 import bookmarkIcon from "@/app/assets/bookmark-icon.png";
-import albumImg1 from "@/app/assets/album-img/album-img-1.png";
-import albumImg2 from "@/app/assets/album-img/album-img-2.png";
-import albumImg3 from "@/app/assets/album-img/album-img-3.png";
-import albumImg4 from "@/app/assets/album-img/album-img-4.png";
+
 const Album = () => {
   return (
     <main>
@@ -52,40 +49,7 @@ const Album = () => {
           </div>
           <div className="md:grid grid-cols-4 gap-[20px]">
             <button className="" onClick={() => {}}>
-              <Image src={albumImg1} alt="" width={455} height={293} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg2} alt="" width={455} height={293} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg3} alt="" width={455} height={293} />{" "}
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg4} alt="" width={455} height={293} />
-            </button>{" "}
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg1} alt="" width={455} height={293} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg2} alt="" width={455} height={293} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg3} alt="" width={455} height={293} />{" "}
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg4} alt="" width={455} height={293} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg1} alt="" width={455} height={293} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg2} alt="" width={455} height={293} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg3} alt="" width={455} height={293} />{" "}
-            </button>
-            <button className="" onClick={() => {}}>
-              <Image src={albumImg4} alt="" width={455} height={293} />
+              {/* <Image src={albumImg1} alt="" width={455} height={293} /> */}
             </button>
           </div>
         </div>
