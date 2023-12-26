@@ -6,17 +6,35 @@ import addNewIcon from "../assets/add-new-icon.png";
 import notifications from "../assets/notifications.png";
 import vector from "../assets/Vector.png";
 import bookmarkIcon from "../assets/bookmark-icon.png";
-import albumImg1 from "../assets/album-img/album-img-1.png";
-import albumImg2 from "../assets/album-img/album-img-2.png";
-import albumImg3 from "../assets/album-img/album-img-3.png";
-import albumImg4 from "../assets/album-img/album-img-4.png";
 import Popup from "../components/Popup";
+import { useEffect, useState } from "react";
+import { v4 } from "uuid";
 
-// const getData = async () => {
-//   const res = await fetch();
-// };
-
+type Data = {
+  albums: { title: string; images: string[] }[];
+};
 const Albums = () => {
+  const [data, setData] = useState<Data>();
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await fetch(
+          "https://my-json-server.typicode.com/isaacrundev/Album/data"
+        );
+        const result = await res.json();
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
+
   return (
     <main className="relative">
       <header className="flex justify-between p-5">
@@ -48,33 +66,28 @@ const Albums = () => {
         </div>
       </section>
       <section className="p-5">
-        <div className="flex flex-col gap-3">
-          <div className="flex gap-[10px]">
-            <Image
-              src={bookmarkIcon}
-              alt="bookmark-icon"
-              width={20}
-              height={20}
-            />
-            <button onClick={() => {}}>
-              <p className="text-[18px]">ALBUM NAME</p>
-            </button>
+        {data?.albums.map((i) => (
+          <div key={v4()} className="flex flex-col gap-3">
+            <div className="flex gap-[10px]">
+              <Image
+                src={bookmarkIcon}
+                alt="bookmark-icon"
+                width={20}
+                height={20}
+              />
+              <button onClick={() => {}}>
+                <p className="text-[18px]">{i.title}</p>
+              </button>
+            </div>
+            <div className="flex gap-[20px]">
+              {i.images.map((img) => (
+                <button key={v4()} className="basis-1/4" onClick={() => {}}>
+                  <Image src={img} alt="" width={455} height={293} />
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="flex gap-[20px]">
-            <button className="basis-1/4" onClick={() => {}}>
-              <Image src={albumImg1} alt="" width={455} height={293} />
-            </button>
-            <button className="basis-1/4" onClick={() => {}}>
-              <Image src={albumImg2} alt="" width={455} height={293} />
-            </button>
-            <button className="basis-1/4" onClick={() => {}}>
-              <Image src={albumImg3} alt="" width={455} height={293} />{" "}
-            </button>
-            <button className="basis-1/4" onClick={() => {}}>
-              <Image src={albumImg4} alt="" width={455} height={293} />
-            </button>
-          </div>
-        </div>
+        ))}
       </section>
     </main>
   );
