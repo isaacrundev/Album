@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Michroma } from "next/font/google";
 import "./globals.css";
+import ContextWrapper from "./context/context";
 
 const michroma = Michroma({ weight: "400", subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={michroma.className}>{children}</body>
+      <body className={michroma.className}>
+        <ContextWrapper>{children}</ContextWrapper>
+      </body>
     </html>
   );
 }

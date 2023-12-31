@@ -1,20 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import searchIcon from "../assets/search-icon.png";
-import addNewIcon from "../assets/add-new-icon.png";
-import notifications from "../assets/notifications.png";
 import vector from "../assets/Vector.png";
 import bookmarkIcon from "../assets/bookmark-icon.png";
 import Popup from "../components/Popup";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { v4 } from "uuid";
+import Link from "next/link";
+import { useStateContext } from "../context/context";
 
-type Data = {
-  albums: { title: string; images: string[] }[];
-};
 const Albums = () => {
-  const [data, setData] = useState<Data>();
+  const { state, setState } = useStateContext();
 
   useEffect(() => {
     const getData = async () => {
@@ -23,7 +19,9 @@ const Albums = () => {
           "https://my-json-server.typicode.com/isaacrundev/Album/data"
         );
         const result = await res.json();
-        setData(result);
+        setState(result);
+
+        // setContextData(result);
       } catch (error) {
         console.error(error);
       }
@@ -31,31 +29,12 @@ const Albums = () => {
     getData();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return (
-    <main className="relative">
-      <header className="flex justify-between p-5">
-        <button className="border-[1px] w-[50px] h-[50px] flex justify-center items-center">
-          <Image src={searchIcon} alt="search-icon" width={20} height={20} />
-        </button>
-        <div className="flex gap-5">
-          <button className="flex border-[1px] items-center justify-center px-[10px] gap-[10px]">
-            <p className="text-[18px]">Submit a photo</p>
-            <Image src={addNewIcon} alt="add-new-icon" width={20} height={20} />
-          </button>
-          <button className="border-[1px] w-[50px] h-[50px] flex justify-center items-center">
-            <Image
-              src={notifications}
-              alt="notifications"
-              width={20}
-              height={20}
-            />
-          </button>
-        </div>
-      </header>
+    <>
       <section className="flex flex-col items-center py-5">
         <div className="flex flex-col gap-[10px]">
           <p className="text-4xl">USERNAME</p>
@@ -66,7 +45,7 @@ const Albums = () => {
         </div>
       </section>
       <section className="p-5">
-        {data?.albums.map((i) => (
+        {state?.albums?.map((i) => (
           <div key={v4()} className="flex flex-col gap-3">
             <div className="flex gap-[10px]">
               <Image
@@ -75,23 +54,21 @@ const Albums = () => {
                 width={20}
                 height={20}
               />
-              <button onClick={() => {}}>
+              <Link href={`/albums/${i.id}`}>
                 <p className="text-[18px]">{i.title}</p>
-              </button>
+              </Link>
             </div>
             <div className="flex gap-[20px]">
-              {i.images.slice(0, 3).map(
-                (img) => console.log(img)
-
-                // <button key={v4()} className="basis-1/4" onClick={() => {}}>
-                //   <Image src={img} alt="" width={455} height={293} />
-                // </button>
-              )}
+              {i.images.slice(0, 4).map((img) => (
+                <button key={v4()} className="basis-1/4" onClick={() => {}}>
+                  <Image src={img} alt="" width={455} height={293} />
+                </button>
+              ))}
             </div>
           </div>
         ))}
       </section>
-    </main>
+    </>
   );
 };
 
