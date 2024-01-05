@@ -6,6 +6,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -29,6 +30,21 @@ const ContextWrapper = ({ children }: { children: ReactNode }) => {
     user: [{ username: "", email: "" }],
     albums: [{ title: "", images: [""], id: "" }],
   });
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await fetch(
+          "https://my-json-server.typicode.com/isaacrundev/Album/data"
+        );
+        const result = await res.json();
+        setState(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <AppContext.Provider value={{ state, setState }}>

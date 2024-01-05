@@ -4,7 +4,13 @@ import searchIcon from "../assets/search-icon.png";
 import addNewIcon from "../assets/add-new-icon.png";
 import notifications from "../assets/notifications.png";
 
-const AlbumsLayout = ({ children }: { children: ReactNode }) => {
+const AlbumsLayout = ({
+  children,
+  modal,
+}: {
+  children: ReactNode;
+  modal: ReactNode;
+}) => {
   return (
     <>
       <header className="flex justify-between p-5">
